@@ -1,0 +1,7 @@
+#sources
+teste.cpp
+
+# compiled stuff
+*.o
+
+# folders
