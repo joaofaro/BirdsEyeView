@@ -17,6 +17,8 @@ class BirdsEyePerspective {
 
 		virtual cv::Mat getBirdsEyePerspective(){ return _outputImage; };
 
+		virtual void BirdsEyePerspective::obtainVanishingPoints();
+
 	private:
 		std::vector<std::vector<cv::Point> > _keyPoints;
 		std::vector<cv::Point> _vanishingPoints;
