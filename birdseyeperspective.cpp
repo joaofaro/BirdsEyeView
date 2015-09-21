@@ -10,8 +10,10 @@ BirdsEyePerspective::BirdsEyePerspective(){
 
 	// X keypoints
 	_keyPoints.push_back(tempVector);
+	
 	// Y keypoints
 	_keyPoints.push_back(tempVector);
+	
 	// Z keypoints
 	_keyPoints.push_back(tempVector);
 
@@ -40,7 +42,7 @@ void BirdsEyePerspective::selectKeypoints(Mat image){
 	    while( _keyPoints[_idxVanishingPoints].size() < _nKeyPoints ){
 	    	drawKeypoints(image);
 	    }
-	    // Increment idx and update callback function, pointing to the _keyPoints with the new _idxVanishingPoints
+	    // Increment idx and update callback function, pointing to the _keyPoints vector with the new _idxVanishingPoints
 	    ++_idxVanishingPoints;
 	    setMouseCallback(_pointSelectionWindow, callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
 	}
