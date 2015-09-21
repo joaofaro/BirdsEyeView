@@ -5,6 +5,7 @@ using namespace cv;
 using namespace std;
 
 BirdsEyePerspective::BirdsEyePerspective(){
+	// Empty temp vector
 	vector<Point> tempVector;
 
 	// X keypoints
@@ -25,7 +26,6 @@ BirdsEyePerspective::BirdsEyePerspective(){
 }
 
 void BirdsEyePerspective::selectKeypoints(Mat image){
-	
 	// Create window
 	namedWindow("Point selection",1);   
 
@@ -37,7 +37,9 @@ void BirdsEyePerspective::selectKeypoints(Mat image){
 	    while( _keyPoints[_idxVanishingPoints].size() < _nKeyPoints ){
 	    	drawKeypoints(image);
 	    }
+	    // Increment idx and update callback function, pointing to the _keyPoints with the new _idxVanishingPoints
 	    ++_idxVanishingPoints;
+	    setMouseCallback("Point selection", callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
 	}
 }
 
@@ -48,20 +50,15 @@ void BirdsEyePerspective::callBackFunc(int event, int x, int y, int flags, void*
         temp.x = x;
         temp.y = y;
         vp->push_back(temp);
-        cout << "Left button" << endl;
-
     }
-    /*if( event == EVENT_RBUTTONDOWN ){
-    	cout << "Right button" << endl;
-    }*/
 }
 
 void BirdsEyePerspective::drawKeypoints(Mat image){
-	for (int i = 0; i < _idxVanishingPoints; ++i){
-		for (int j = 0; j < _keyPoints[_idxVanishingPoints].size(); ++j){
-			
+	for (int i = 0; i <= _idxVanishingPoints; ++i){
+		for (int j = 1; j < _keyPoints[i].size(); j+=2){
+			line(image, _keyPoints[i][j-1], _keyPoints[i][j], Scalar(0, 255/(i+1), 255), 2 );
 		}
 	}
 	imshow("Point selection", image);
-	waitKey(0);
+	waitKey(1);
 }

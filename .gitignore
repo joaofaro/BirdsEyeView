@@ -5,3 +5,4 @@ teste.cpp
 *.o
 
 # folders
+bin
