@@ -13,5 +13,15 @@ int main() {
 
 	cout << "Hello World!" << endl;
 
+	// Create object
+	BirdsEyePerspective birsEye;
+
+	// Read test image
+	cv::Mat image;
+    image = cv::imread("./HomographyTest.jpg", CV_LOAD_IMAGE_COLOR);
+
+    // Set keypoints
+   	birsEye.selectKeypoints(image);
+
 	return 0;
 }

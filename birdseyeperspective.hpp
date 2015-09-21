@@ -5,13 +5,13 @@
 
 class BirdsEyePerspective {
 	public:
-		BirdsEyePerspective(){};
+		BirdsEyePerspective();
 
 		virtual BirdsEyePerspective* clone(){ return new BirdsEyePerspective(*this);};
 
 		virtual ~BirdsEyePerspective(){};
 
-		virtual void selectKeypoints(cv::Mat image){};
+		virtual void selectKeypoints(cv::Mat image);
 
 		virtual std::vector<cv::Point> getVanishingPoints(){ return _vanishingPoints; };
 
@@ -21,6 +21,15 @@ class BirdsEyePerspective {
 		std::vector<std::vector<cv::Point> > _keyPoints;
 		std::vector<cv::Point> _vanishingPoints;
 		cv::Mat _outputImage;
+		uint _nKeyPoints;
+		uint _nVanishingPoints;
+		uint _idxVanishingPoints;
+
+		// Mouse callback function
+		static void callBackFunc(int event, int x, int y, int flags, void* userdata);
+
+		// Draw keypoints in the image 
+		void drawKeypoints(cv::Mat image);
 };
 
 #endif

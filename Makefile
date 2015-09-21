@@ -25,14 +25,14 @@ EXEC = ./bin/birdseye
 MAIN = main
 
 # Objects to be linked with main
-OBJS = BIRDS.o
+OBJS = birdseyeperspective.o
 
 # Compilation command
 $(EXEC) : $(MAIN).cpp ${OBJS}
-	$(CC) $(RPATH) $(CFLAGS) $(PKG_CONFIG_CFLAGS) $(MAIN).cpp -o $(EXEC) $(PKG_CONFIG_LIB) $(LIB)
+	$(CC) $(RPATH) $(CFLAGS) $(PKG_CONFIG_CFLAGS) $(MAIN).cpp ${OBJS} -o $(EXEC) $(PKG_CONFIG_LIB) $(LIB)
 
-BIRDS.o: birdseyeperspective.cpp birdseyeperspective.hpp
+birdseyeperspective.o: birdseyeperspective.cpp birdseyeperspective.hpp
 	$(CC) -c $(CFLAGS) $(PKG_CONFIG_CFLAGS) birdseyeperspective.cpp 
 
 clean: 
-	rm -f ${EXEC}
+	rm -f ${EXEC} ${OBJS}
