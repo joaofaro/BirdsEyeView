@@ -23,14 +23,17 @@ BirdsEyePerspective::BirdsEyePerspective(){
 
 	// Current idx (defined to make the interface control easier)
 	_idxVanishingPoints = 0;
+
+	// Name of the window used in keypoints selection
+	_pointSelectionWindow = "Point selection";
 }
 
 void BirdsEyePerspective::selectKeypoints(Mat image){
 	// Create window
-	namedWindow("Point selection",1);   
+	namedWindow(_pointSelectionWindow,1);   
 
 	// Set the callback function
-    setMouseCallback("Point selection", callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
+    setMouseCallback(_pointSelectionWindow, callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
     
     // Draw points while the user select them
     while(_idxVanishingPoints < _nVanishingPoints){
@@ -39,7 +42,7 @@ void BirdsEyePerspective::selectKeypoints(Mat image){
 	    }
 	    // Increment idx and update callback function, pointing to the _keyPoints with the new _idxVanishingPoints
 	    ++_idxVanishingPoints;
-	    setMouseCallback("Point selection", callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
+	    setMouseCallback(_pointSelectionWindow, callBackFunc, (void*)&_keyPoints[_idxVanishingPoints]);
 	}
 }
 
@@ -59,6 +62,6 @@ void BirdsEyePerspective::drawKeypoints(Mat image){
 			line(image, _keyPoints[i][j-1], _keyPoints[i][j], Scalar(0, 255/(i+1), 255), 2 );
 		}
 	}
-	imshow("Point selection", image);
+	imshow(_pointSelectionWindow, image);
 	waitKey(1);
 }

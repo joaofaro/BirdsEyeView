@@ -24,6 +24,8 @@ class BirdsEyePerspective {
 		uint _nKeyPoints;
 		uint _nVanishingPoints;
 		uint _idxVanishingPoints;
+		std::string _pointSelectionWindow;
+		std::string _resultWindow;
 
 		// Mouse callback function
 		static void callBackFunc(int event, int x, int y, int flags, void* userdata);
