@@ -11,8 +11,6 @@ using namespace std;
 
 int main() {
 
-	cout << "Hello World!" << endl;
-
 	// Create object
 	BirdsEyePerspective birdsEye;
 

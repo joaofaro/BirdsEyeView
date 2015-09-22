@@ -94,9 +94,7 @@ void BirdsEyePerspective::obtainVanishingPoints(){
 		}
 		// Calculate tempvanishingPoint location (updating the struct) and add it to the vector
 		getIntersectionPoint(tempVanishingPoint.slope[0], tempVanishingPoint.b[0], tempVanishingPoint.slope[1], tempVanishingPoint.b[1], tempVanishingPoint.location);
-		_vanishingPoints.push_back(tempVanishingPoint);
-		
-		cout << "group: " << group << " , location: " << tempVanishingPoint.location << endl; // DEBUG
+		_vanishingPoints.push_back(tempVanishingPoint);		
 	}
 	// Draw vanishing points
 	drawKeypoints(0);
@@ -109,7 +107,7 @@ void BirdsEyePerspective::getLineEquation(Point2d p1, Point2d p2, double &slope,
 	// Calc slope
 	slope = (p2.y - p1.y) / (p2.x - p1.x);
 	// Calc b using point 1
-	b = p1.y / (slope*p1.x);
+	b = p1.y - (slope*p1.x);
 }
 
 void BirdsEyePerspective::getIntersectionPoint(double m1, double b1, double m2, double b2, Point2d &location){
