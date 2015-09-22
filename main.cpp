@@ -14,14 +14,17 @@ int main() {
 	cout << "Hello World!" << endl;
 
 	// Create object
-	BirdsEyePerspective birsEye;
+	BirdsEyePerspective birdsEye;
 
 	// Read test image
 	cv::Mat image;
     image = cv::imread("./HomographyTest.jpg", CV_LOAD_IMAGE_COLOR);
 
     // Set keypoints
-   	birsEye.selectKeypoints(image);
+   	birdsEye.selectKeypoints(image);
+
+   	// Calculate vanishing points
+   	birdsEye.obtainVanishingPoints();
 
 	return 0;
 }
